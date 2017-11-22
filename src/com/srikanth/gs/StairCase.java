@@ -3,7 +3,7 @@ package com.srikanth.gs;
 public class StairCase {
 
 	public static void main(String[] args) {
-		for(int i=0;i<35;i++){
+		for(int i=0;i<40;i++){
 		System.out.println(stairCaseMem(i));
 		}
 		for(int i=0;i<35;i++){

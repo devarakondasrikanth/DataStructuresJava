@@ -7,9 +7,13 @@ public class MaxSubSequence {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		longestSubSquence("aabbbbcccdd");
-		longestSubSquence("11000001");
-		longestSubseq("aabbbbcccddbbbbbb");
+		longestSubseq("aabbbbcccdd");
+		longestSubseq("11000001");
+		longestSubseq("aabbbbcccddbbbbbb77729994789932847888842222888477759993888477577775555555555555");
+		
+		runLongestIndex("aabbbbcccdd");
+		runLongestIndex("11000001");
+		runLongestIndex("aabbbbcccddbbbbbb77729994789932847888842222888477759993888477577775555555555555");
 	}
 	//wont work for duplicates 
 	public static int[] longestSubSquence(String str){
@@ -56,4 +60,29 @@ public class MaxSubSequence {
 		System.out.println(key+"---->"+value);
 		return new int[]{key,value};
 	}
+	
+	public static int[] runLongestIndex(String setofletters) {
+		  int maxCount = 0;
+		  int maxIndex = 0;
+
+		  // loops each character in the string
+		  for (int i = 0; i < setofletters.length() - 1; ) {
+		    // new char sequence starts here
+		    char currChar = setofletters.charAt(i);
+		    int count = 1;
+		    int index = i;
+		    while ( (index < setofletters.length() - 1) &&
+		            (currChar == setofletters.charAt(++index)) ) {
+		       count++;
+		    } 
+
+		    if (count > maxCount) {
+		       maxIndex = i;
+		       maxCount = count;
+		    }
+		    i = index;
+		  }
+		  System.out.println(maxIndex+"---->"+maxCount);
+		  return new int[]{maxIndex,maxCount};
+		}
 }
