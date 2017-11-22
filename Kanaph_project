@@ -1,0 +1,23 @@
+
+•         Please provide a suggestion you made during your current project. Why did you make the suggestion? What did they do with your suggestion?
+	In my current project at CITI Group I made two suggestions
+1)To use AES/CBC/PKCS12 algorithm of BouncyCastle Service Provider to Encrypt the sensitive data that is being stored in the data base.
+	Previously the sensitive data like SSN Number, Credit Cars Info is encrypted in such a way that a hacker can make a pattern matching out of the encrypted data. For example, when we encrypt “Apple” with our old implementation we always used to get “Orange” as encrypted string which would be a potential serious-security issue for pattern matching. With my suggestion by using BouncyCastle’s AES/CBC/PKCS12 algorithm we will get different encrypted strings every time. For example, if you encrypt “Apple” first time we will get “Pine”, second time we will get “Banana” and so on…which makes it more secured way of encrypting data and also since it’s a open source reduces the cost we are currently paying for RSA service provider. This Suggestion won best Idea of Quarter award. This made to production and all encryption mechanisms was refactored to use Bouncy Castle which I would feel as a good achievement.
+ 
+2)To use Spring -Data-JPA instead of Hibernate.
+	I worked on a different project an internal to our department (mortgage) which uses JDBC methods to interact with the database to retrieve data. We have a plan to move all the data from Oracle to NO-SQL data base at later point of time. The project is to change the Data Access layer and use ORM/JPA framework to interact with the database. I suggested to use Spring Data JPA instead of Hibernate which can be well gelled with both relational and No-SQL databases. Keeping in mind that we would move to No-SQL database in near feature I suggested Spring-Data-JPA over hibernate. I got some good accolades for this idea and I implemented this this feature. Currently my code is in production and is working fine.
+ 
+•         For your last 2 projects provide the following
+1)
+o   What was the project about
+	My last project I was working for CITI Group Mortgage Department, the application is about managing mortgage loans and user information. The architecture of the application is AngularJS front-end which interacts with the middleware spring-boot application and back-end is Oracle Database. The front AngularJS components will interact with middleware spring-boot application using REST call’s and Controllers direct the calls to appropriate methods which in-turn talks to Database using Hibernate 4.x to read, create, update and delete the data. This application is integrated with IBM’s Identity and Access management solution which secures each call made from Angular UI to middleware Rest-Services. This application is integrated with accounts application using active-mq messaging service for a reliable message delivery system.      
+•	What did you contribute
+I am responsible to write the RESTFUL api’s, integrating the system with IBM’s Identity and Access Management using spring-security which gives fine-grained access control to the Restful web services. Complete Data Access layer implementation is done by me using Spring-Data-JPA by writing Repositories, Services and Entities for this I used different annotations like @Entity, @Repository, @Service etc. In this implementation, I used One-to-Many and Many-to-One mappings. I  wrote test cases using JUNIT framework and  Mockito to mock some of the services like the Database service, Activemq service and some Identity and Access management services. I integrated our application with accounts application using activemq as a reliable message delivery system. To interact with activemq I made use of JMSTemplate which gives the flexibility to interact and manage the messages to and from messaging layer. 
+•	Did you have any issues/problems? If so please explain how you resolved them
+
+Coordinating the effort of setting up continuous integration and delivery with devops team.
+Since it is the first time we are using spring-boot the central repo which is nexus doesn’t have required reops/jar file and it’s not connected with the maven central to download the jar’s. I coordinated this effort by meeting devops people and explaining them why nexus should be a connected to maven central …. etc.
+
+•	What was the end result
+I solved all issues and finally made it to the production. The process I followed set an example/benchmark for the teams in the department to follow for continuous integration and delivery part.
+	
