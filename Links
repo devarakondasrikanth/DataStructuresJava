@@ -70,3 +70,16 @@ insert into exam('chemistry',2);
 insert into exam('maths',2);
 insert into exam('physics',3);
 insert into exam('chemistry',3);
+
+
+/***********************************************?
+https://spring.io/guides/tutorials/spring-boot-oauth2/
+http://www.baeldung.com/java-runnable-callable
+https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.UncaughtExceptionHandler.html
+https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+http://www.restapitutorial.com/lessons/httpmethods.html
+https://www.w3schools.com/tags/ref_httpmethods.asp
+http://www.mkyong.com/webservices/jax-rs/file-upload-example-in-jersey/
+https://www.soapui.org/testing-dojo/best-practices/soap-vs-rest-challenges.html
+https://www.javacodegeeks.com/2016/01/exception-handling-spring-restful-web-service.html
+http://callistaenterprise.se/blogg/teknik/2015/04/10/building-microservices-with-spring-cloud-and-netflix-oss-part-1/
