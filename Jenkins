@@ -2,3 +2,33 @@ https://www.cloudbees.com/blog/top-10-best-practices-jenkins-pipeline-plugin
 
 https://wilsonmar.github.io/jenkins2-pipeline/
 
+
+Graph Coloring »
+Color the nodes in a graph so adjacent nodes always have different colors. keep reading »
+
+Parenthesis Matching »
+Write a function that finds the corresponding closing parenthesis given the position of an opening parenthesis in a string. keep reading »
+
+Recursive String Permutations »
+Write a recursive function of generating all permutations of an input string. keep reading »
+
+Find Repeat, Space Edition »
+Figure out which number is repeated. But here's the catch: optimize for space. keep reading »
+
+Find Repeat, Space Edition BEAST MODE »
+Figure out which number is repeated. But here's the catch: do it in linear time and constant space! keep reading »
+
+Simulate 5-sided die »
+Given a 7-sided die, make a 5-sided die. keep reading »
+
+Simulate 7-sided die »
+Given a 5-sided die, make a 7-sided die. keep reading »
+
+Find Rotation Point »
+I wanted to learn some big words to make people think I'm smart, but I messed up. Write a function to help untangle the mess I made. keep reading »
+
+MillionGazillion »
+I'm making a new search engine called MillionGazillion(tm), and I need help figuring out what data structures to use. keep reading »
+
+Permutation Palindrome »
+
