@@ -2,7 +2,7 @@ package com.srikanth.gs;
 
 public class StringPermutations {
 	public static void main(String args[]){
-		permutation("APPLE");
+		permutation("SRIKANTH");
 	}
 	public static void permutation(String str) { 
 	    permutation("", str); 

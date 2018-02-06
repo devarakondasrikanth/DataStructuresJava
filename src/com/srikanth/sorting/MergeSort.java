@@ -95,9 +95,48 @@ public class MergeSort {
 		QS(arr,i,rIndex);
 	}
 	
+	public static int[] insertionSort(int[] arr){
+		if(arr==null){
+			return arr;
+		}else if(arr.length==1){
+			return arr;
+		}else{
+			int key =0,j=0;
+			for(int i=1;i<arr.length;i++){
+				key = arr[i];
+				j = i-1;
+				while(j>=0&&arr[j]>key){
+					arr[j+1]= arr[j];
+							j--;
+				}
+				arr[j+1]= key;
+			}
+			return arr;
+		}
+	}
+
+	public static int[] bubbleSort(int[] arr){
+		if(arr==null){
+			return arr;
+		}else if(arr.length==1){
+			return arr;
+		}else{
+			for(int i=0;i<arr.length;i++){
+				for(int j=1;j<arr.length-i;j++){
+					if(arr[j-1]>arr[j]){
+						int temp =arr[j-1];
+						arr[j-1] = arr[j];
+						arr[j] = temp;
+					}
+				}
+			}
+			return arr;
+		}
+	}
+	
 	public static void main(String args[]){
 		int[] a = {1,8,2,3,7,4,9,5,6};
-		a = QuickSort(a);
+		a = bubbleSort(a);
 		for (int i : a) {
 			System.out.println(i);
 		}

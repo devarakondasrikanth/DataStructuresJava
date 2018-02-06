@@ -20,11 +20,15 @@ public class TestBinarySearchTree {
 		System.out.println("****BST Level order Traversal****");
 		BinarySearchTree.printNodesBFS(root);
 		System.out.println("****BST Print only one level nodes****");
-		BinarySearchTree.printNodesAtLevel(root, 2);
+		BinarySearchTree.printNodesAtLevel(root, 0);
 		System.out.println("****Height of the Tree is****");
 		System.out.println("Height of the tree is "+BinarySearchTree.heightOfTree(root));
 		System.out.println("****Sum of Integers at Level ****");
 		System.out.println("Sum of nodes at given level "+BinarySearchTree.sumOfNodesAtGivenLevel(root, 2));
+		System.out.println("*********************************");
+		BinarySearchTree.printSumAtEachlevel(root);
+		
+		System.out.println(BinarySearchTree.isBst(root));
 	}
 
 }

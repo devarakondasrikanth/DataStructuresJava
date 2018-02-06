@@ -164,4 +164,55 @@ public class BinarySearchTree {
 			}
 		}
 	}
+	
+	public static void printSumAtEachlevel(TreeNode root){
+		if(root == null){
+			System.out.println("Tree is empty");
+		}else{
+			Queue<TreeNode> queue = new LinkedList<>();
+			queue.add(root);
+			int level =1;
+			while(!queue.isEmpty()){
+				int count = queue.size();
+				int sum =0;
+				while(count-->0){
+					TreeNode temp = queue.poll();
+					sum = sum+temp.data;
+					if(temp.left!=null){
+						queue.add(temp.left);
+					}
+					if(temp.right!=null){
+						queue.add(temp.right);
+					}
+				}
+				System.out.println("sum of nodes at level "+(level++)+" is "+sum );
+			}
+		}
+	}
+	
+	public static boolean isBst(TreeNode root){
+		if(root == null)
+			return true;
+		else{
+			List<Integer> lst = new ArrayList<>();
+		    inOrder(root,lst);
+			if(lst.size()==1)
+				return true;
+			else{
+				for(int i=1;i<lst.size();i++){
+					if(lst.get(i-1)>=lst.get(i))
+						return false;
+				}
+				return true;
+			}
+		}
+	}
+
+	public static void inOrder(TreeNode root,List<Integer> lst){
+			if(root.left!=null)
+			inOrder(root.left,lst);
+			lst.add(root.data);
+			if(root.right!=null)
+			inOrder(root.right,lst);
+	}
 }

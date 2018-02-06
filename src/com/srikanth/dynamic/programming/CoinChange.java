@@ -10,6 +10,8 @@ public class CoinChange {
         System.out.println(countWays(n,arr));        
         System.out.println(coinChnageWays(n,arr));
         }
+        
+        
 	}
 	
 	public static int countWays(int n,int[] arr){

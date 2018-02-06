@@ -12,7 +12,7 @@ public class SecondSmallestNumberTest {
 			set.add(arr[i]);
 		}
 		
-		System.out.println(set.toArray()[set.size()-2]);
+		System.out.println(set.toArray()[1]);
 	}
 
 }

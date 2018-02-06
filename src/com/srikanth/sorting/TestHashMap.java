@@ -18,6 +18,8 @@ public class TestHashMap {
 		hMap.put(null, null);
 		
 		System.out.println(hMap.get(null));
+		String str = "http://hudson.ris.principal.com/hudson/job/RISPRTCP/job/integration-participantinvestment/2741/";
+		System.out.println(str.split("/")[5]);
 	}
 	
 	public static int[] balanced(String[] s,int[] t){

@@ -43,6 +43,12 @@ public class TestSingleLinkedList {
 		
 		SingleLinkedList.printNodes(head);
 		
+		head = SingleLinkedList.chunckNodeReverse(head, 3);
+		
+		System.out.println("*****************************");
+		
+		SingleLinkedList.printNodes(head);
+		
 		head = SingleLinkedList.chunkRev(head, 3);
 		
 		System.out.println("*****************************");
