@@ -1220,3 +1220,229 @@ public boolean isOneModify(String s,String t){
     }
     return diff==1;
 }
+
+
+public boolean isMirror(TreeNode root){
+	return isMirror(root,root);
+}
+public boolean isMirror(TreeNode left,TreeNode right){
+	if(left==null&&right==null){
+		return true;
+	}else if(left.data!=right.data){
+		return false;
+	}else{
+		
+			if(left!=null&&right!=null&&left.data==right.data){
+				return isMirror(left.left,right.right)&&isMirror(left.right,right.left);
+			}else{
+			return false;
+			}
+	}
+}
+
+public int noOfWays(int[] arr,int sum)
+{
+		int[] ways = new int[sum+1];
+		Arrays.fill(ways,0);
+		ways[0] = 0;
+		for(int num:arr)
+		{
+				for(int i=0;i<=sum;i++){
+					if(i>=num){
+						ways[i]+=ways[i-num];
+					}
+				}
+		}
+		return ways[sum];
+}
+
+public int[] insertionSort(int[] a){
+	if(a==null)
+		return a;
+	else if(a.length==1){
+		return a;
+	}else{
+		int key =0;
+		int j =0;
+		for(int i=1;i<a.length;i++)
+		{
+				int key = a[i];
+				int j= i-1;
+				while(j>=0&&a[j]>key){
+					a[j+1] =a[j];
+					j--;
+				}
+				a[j+1] = key; 
+		}
+		return arr;
+	}
+}
+
+//LCS longest common sequence in two strings
+public int lcs(String s1,String s2){
+	if(s1==null||s2==null){
+		return 0;
+	}else{
+		List<Character> list = new ArrayList<>();
+		return lcs(s1,s2,s1.length(),s2.length(),list);
+	}
+}
+
+public int lcs(String s1,String s2,int m,int n,List<Character> lst)
+{
+		if(m==0||n==0){
+			return 0;
+		}else if(s1.charAt(m-1)==s2.charAt(n-1)){
+			lst.add(s1.charAt(m-1));
+			return 1+lcs(s1,s2,m-1,n-1,lst);
+		}else{
+			return Math.max(lcs(s1,s2,m-1,n),lcs(s1,s2,m,n-1));
+		}
+			
+}
+
+public int maxSumInArray(int[] arr){
+	if(arr==null){
+		return 0;
+	}else if(arr.length==1){
+		return arr[0];
+	}else{
+		int curr_max =0;
+		int max_so_far = Integer.MIN_VALUE;
+		for(int i=0;i<arr.length;i++){
+			curr_max = Math.max(arr[i],curr_max+arr[i]);
+			max_so_far = Math.max(curr_max,max_so_far);
+		}
+		return max_so_far;
+	}
+}
+
+public int lengthOfMaxSubString(String str){
+	if(str == null){
+		return 0;
+	}else{
+		Set<Character> set = new HashSet<>();
+		int max = 0;
+		String result ="";
+		int i=0,j=0,n=str.length();
+		while(i<n&&j<n){
+			if(!set.contains(str.charAt(j++))){
+				set.add(str.charAt(j++));
+				if(max<j-i){
+					result = getString(set);
+					max = j-i;
+				}
+			}else{
+				set.remove(str.charAt(i));
+				i++;
+			}
+		}
+		System.out.println(result);
+		return max;
+	}
+}
+
+public boolean isMirror(TreeNode root){
+	if(root == null){
+		return true;
+	}else{
+		return isMirror(root,root);
+	}
+}
+public boolean isMirror(TreeNode leftRoot,TreeNode rightRoot){
+	if(leftRoot==null && rightRoot==null){
+		return true;
+	}else if(leftRoot.data!=rightRoot.data){
+		return false;
+	}else{
+		
+		if(leftRoot!=null&&rightRoot!=null&&leftRoot.data==rightRoot.data){
+			return isMirror(leftRoot.left,rightRoot.right)&&isMirror(leftRoot.right,rightRoot.left);
+		}
+		return false;
+	}
+}
+
+public int heightOfTree(TreeNode root){
+	if(root == null){
+		return 0;
+	}else if(root.left==null && root.right==null){
+		return 1;
+	}else{
+		int lHeight = height(root.left);
+		int rHeight = height(root.right);
+		if(lHeight>rHeight)
+			return 1+lHeight;
+		else
+			return 1+rHeight;
+	}
+}
+
+public int closeValue(TreeNode root,int target){
+	if(root == null){
+		return 0;
+	}else{
+		int returnValue = root.data;
+		TreeNode temp = root;
+		while(temp!=null){
+		
+			if(Math.abs(target-root.data)<Math.abs(target-returnValue)){
+				returnValue = root.data;
+			}
+		
+			temp = target>temp.data?temp.right:temp.left;
+		}
+	}
+}
+
+public int[] merge(int[] left,int[] right)
+{
+		int lIndex =0;
+		int rIndex = 0;
+		int i=0;
+		int[] result = new int[left.length+right+length];
+		while(lIndex<left.length&&rIndex<right.length){
+			if(left[lIndex]<right[rIndex]){
+				result[i++] = left[lIndex++];
+			}else{
+				result[i++] = right[rIndex++];
+			}
+		}
+		while(lIndex<left.length){
+			result[i++] = left[lIndex++];
+		}
+		while(rIndex<right.length){
+			result[i++] = right[rIndex++];
+		}
+		return result;
+}
+
+public List<String> permutations(String str){
+	List<String> lst = new ArrayList<>();
+	if(str == null){
+		return lst
+	}else{
+		permute(str,0,str.length()-1,lst);
+		return lst;
+	}
+}
+
+public void permute(String str,int l,int r,List<String> lst){
+	if(l==r){
+		lst.add(str);
+	}else{
+	for(int i=1;i<str.length();i++}{
+		str= swap(str,l,i);
+		permute(str,l+1,r,lst)
+		str= swap(str,l,i);
+		}
+	}
+}
+
+public String swap(String str,int i,int j){
+	char[] tempArr = str.toCharArray();
+	char temp = tempArr[i];
+	tempArr[i] = tempArr[j];
+	tempArr[j] = temp;
+	retrun String.valueOf(tempArr);
+}
