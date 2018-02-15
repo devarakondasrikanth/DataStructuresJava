@@ -1,3 +1,8 @@
+package com.srikanth.dynamic.programming;
+
+import java.util.Collections;
+import java.util.PriorityQueue;
+
 class MedianFinder {
     PriorityQueue<Integer> maxHeap;//lower half
     PriorityQueue<Integer> minHeap;//higher half
