@@ -31,8 +31,10 @@ public class GraphTest {
 		set4.add(0);
 		set4.add(1);
 		g.add(4, set4);
-		
+		g.addVertexAndEdge(5, 4);
 		g.printGraph();
+		
+		g.Bfs();
 
 	}
 

@@ -3,8 +3,8 @@ package com.srikanth.sorting;
 public class Lockers100 {
 
 	public static void main(String[] args) {
-		lockers(100);
-		System.out.println(countSquares(0,50000));
+		lockers(1000);
+		
 	}
 	
 	public static void lockers(int n){
