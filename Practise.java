@@ -2349,3 +2349,139 @@ public static void printColSum(int[][] matrix,int col){
 	
 }
 
+public static int countOfN(int range,int n){
+	if(n<0&&n>9)
+		return 0;
+	else{
+		int count =0;
+		for(int i=0;i<=range;i++){
+			int temp = i;
+			if(temp==n){
+				count++;
+			}
+			else{
+				while(temp>0){
+				if(temp%10==n){
+					count++;
+				}
+				temp = temp/10;
+				}
+			}
+		}
+		return count;
+	}
+}
+
+public Node reverse(Node root){
+	if(root == null)
+		return node;
+	else if(rott.next == null)
+		return node;
+	else 
+	{
+			Node current = root;
+			Node previous = null;
+			Node next = null;
+			while(next!=null){
+				next = current.next;
+				current.next = previous;
+				previous = current;
+				current = next;
+			}
+			return previous;
+	}
+}
+
+public Node midNode(Node root){
+	Node fast = root;
+	Node slow = root;
+	
+	while(fast.next!=null&&fast.next.next!=null){
+		fast = fast.next.next;
+		slow = slow.next;
+	}
+	
+	return slow;
+}
+
+public int countNodes(Node root){
+	Node temp =root;
+	int count =1;
+	while(temp!=null){
+		temp = temp.next;
+		count++;
+	}
+	return count;
+}
+
+public Node kthNode(Node root,int k){
+	int count = countNodes(root);
+	int numberOfNodesToJump = count-k;
+	Node temp = root;
+		while(numberOfNodesToJump>=0){
+			temp = temp.next;
+			numberOfNodesToJump--;
+		}
+		return temp;
+}
+
+public int LCS(String str1,String str2){
+	retrun lcs(str1,str2,str1.length(),str2.length());
+}
+public int lcs(String s1,String s2,int m,int n){
+	if(s1.charAt(m-1)==s2.charAt(n-1))
+		return 1+lcs(s1,s2,m-1,n-1);
+	else
+		return Math.max(lcs(s1,s2,m-1,n),lcs(s1,s2,m,n-1));
+}
+
+public int longestSubSequence(String str){
+	if(str==null)
+		return 0;
+	else{
+		int i=0,j=0;
+		int max = Integer.MIN_VALUE;
+		Set<Character> set = new HashSet<>();
+		while(i<str.length()&&j<str.length()){
+			if(!set.contains(str.charAt(j)){
+				set.add(str.charAt(j++));
+				max = Math.max(max,j-i);
+			}else{
+				set.remove(str.charAt(i++));
+			}
+		}
+		return max;
+	}
+}
+
+public boolean isBalanced(TreeNode root){
+	if(root==null)
+		return true;
+	else
+		int lHeight = 0;
+		int rHeight = 0;
+		if(root.left!=null){
+			lHeight = height(root.left);
+		}
+		if(root.right!=null){
+			rHeight = height(root.right);
+		}
+		
+		if(Math.abs(lHeight-rHeight)>1)
+			return false;
+		else
+			return true;
+			
+}
+
+public int heightOfTree(TreeNode root){
+	if(root==null){
+		return 0;
+	}else{
+		int lHeight = heightOfTree(root.left);
+		int rHeight = heightOfTree(root.right);
+		return (lHeight>rHeight)?1+lHeight:1+rHeight;
+	}
+}
+
+
