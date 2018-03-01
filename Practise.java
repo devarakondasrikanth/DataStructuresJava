@@ -1,28 +1,6 @@
-
-PUT metrics-2017.12/_mapping/log
-{
-  "teamName": {
-            "type": "text",
-            "fields": {
-              "keyword": {
-                "type": "keyword",
-                "fielddata": true,
-                "ignore_above": 256
-              }
-            }
-          }
-}
-
-
-public static rev numRev(int num)
-{
-	int rev =0;
-	while(num>0){
-		rev = rev*10+num%10;
-		num = num/10;
-	}
-	return rev;
-}
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 //Tree is symmentric
 public static boolean isSymentric(TreeNode root)
@@ -2351,7 +2329,7 @@ public static void printColSum(int[][] matrix,int col){
 
 public static int countOfN(int range,int n){
 	if(n<0&&n>9)
-		return 0;
+		return 1;
 	else{
 		int count =0;
 		for(int i=0;i<=range;i++){
@@ -2484,4 +2462,58 @@ public int heightOfTree(TreeNode root){
 	}
 }
 
+public boolean isMirroed(TreeNode rootLeft,TreeNode rootRight){
+	if(root == null){
+		return true;
+	}else{
+		if(rootLeft!=null &&rootRight!=null&&rootLeft.data==rootRight.data){
+			return isMirroed(rootLeft.left,rootRight.right)&&isMirrored(rootLeft.right,rootRight.left);
+		}
+		return false;
+	}
+}
 
+public int heightOfTree(TreeNode root)
+{
+		if(root == null){
+			return 0;
+		}else if(root.left==null&&root.right==null){
+			return 1;
+		}else{
+			int lHeight = heightOfTree(root.left);
+			int rHeight = heightOfTree(root.right);
+			if(lHeight>rHeight){
+				return 1+lHeight;
+			}else{
+				return 1+rHeight;
+			}
+		}
+}
+
+public boolean isPalindrome(String str){
+	char[] c = str.toCharArray();
+	int i=0,j=str.length-1;
+	while(i<j){
+		if(c[i]!=c[j])
+			return false;
+		i++;
+		j--;
+	}
+	return true;
+}
+
+public static <T> List<List<T>> computeCombinations2(List<List<T>> lists) {
+    List<List<T>> combinations = Arrays.asList(Arrays.asList());
+    for (List<T> list : lists) {
+        List<List<T>> extraColumnCombinations = new ArrayList<>();
+        for (List<T> combination : combinations) {
+            for (T element : list) {
+                List<T> newCombination = new ArrayList<>(combination);
+                newCombination.add(element);
+                extraColumnCombinations.add(newCombination);
+            }
+        }
+        combinations = extraColumnCombinations;
+    }
+    return combinations;
+}
