@@ -14,6 +14,295 @@ Lowest Common Ancestor in BST and Binary Tree
 Binary Tree Maximum Path Sum
 Minimum Distance Between BST Nodes
 
+Trees
+Traversal
+public void inOrder(TreeNode root){
+	if(root==null){
+		System.out.println("Tree is empty");
+	}else{
+		if(root.left!=null){
+			inOrder(root.left);
+		}
+		System.out.println(root.val);
+		if(root.right!=null){
+			inOrder(root.right);
+		}
+	}
+}
+public void preOrder(TreeNode root){
+	if(root==null){
+		System.out.println("Tree is empty");
+	}else{
+		System.out.println(root.val);
+		if(root.left!=null){
+			preOrder(root.left);
+		}
+		if(root.right!=null){
+			preOrder(root.right);
+		}
+	}
+}
+public void postOrder(TreeNode root){
+	if(root==null){
+		System.out.prtinln("Tree is empty");
+	}else{
+		if(root.left!=null){
+			postOrder(root.left);
+		}
+		if(root.right!=null){
+			postOrder(root.right);
+		}
+		System.out.println(root.val);
+	}
+}
+BFS
+public void BFS(TreeNode root){
+	if(root==null){
+		System.out.println("Tree is empty");
+	}else{
+		Queue<TreeNode> q = new LinkedList<>();
+		q.add(root);
+		while(!q.isEmpty()){
+		TreeNode temp = q.poll();
+		System.out.print(temp.data);
+			if(temp.left!=null)
+				q.add(temp.left);
+			if(temp.right!=null)
+				q.add(temp.right);
+		}
+	}
+}
+DFS
+public void DFS(TreeNode root){
+	if(root==null){
+		System.out.println("Tree is empty")
+	}else{
+		Stack<TreeNode> stack = new Stack<>();
+		stack.push(root);
+		while(!stack.isEmpty()){
+			TreeNode temp = stack.pop();
+			System.out.println(temp.val);
+			if(temp.left!=null){
+				stack.push(temp.left);
+			}
+			if(temp.right!=null){
+				stack.push(temp.right);
+			}
+		}
+	}
+}
+Height of the tree
+public int heightOfTree(TreeNode root){
+	if(root==null){
+		return 0;
+	}else{
+		int l = heightOfTree(root.left);
+		int r = heightOfTree(root.right);
+		return Math.max(l,r)+1;
+	}
+}
+isBalanced or Not
+public boolean isBalanced(TreeNode root){
+	if(root==null){
+		return true;
+	}else{
+		int l = heightOfTree(root.left);
+		int r = heightOfTree(root.right);
+		return Math.abs(l-r)<=1?true:false;
+	}
+}
+Each Level Sum
+public void printSumAtLevel(TreeNode root){
+	if(root==null){
+		System.out.println("Tree is empty");
+	}else{
+		Queue<TreeNode> q = new LinkedList<>();
+		q.add(root);
+		while(!q.isEmpty()){
+			int size = q.size();
+			int sum = 0;
+			while(size-->0){
+				TreeNode temp = q.poll();
+				sum += temp.val;
+				if(temp.left!=null){
+					q.add(temp.left);
+				}
+				if(temp.right!=null){
+					q.add(temp.right);
+				}
+			}
+			System.out.println(sum);
+		}
+	}
+}
+Max at level in Tree
+public void maxAtLevel(TreeNode root){
+	if(root == null){
+		System.out.println("tree is empty");
+	}else{
+		Queue<TreeNode> queue = new LinkedList<>();
+		int max = Integer.MIN_VALUE;
+		queue.add(root);
+		while(!queue.isEmpty()){
+			int size = queue.size();
+			int sum = 0;
+			while(size-->0){
+				TreeNode temp = queue.poll();
+				sum += temp.val;
+				if(temp.left!=null){
+					queue.add(temp.left);
+				}
+				if(temp.right!=null){
+					queue.add(temp.right);
+				}
+			}
+			max = Math.max(max,sum);
+		}
+		return max;
+	}
+}
+Number of Nodes at each level in BinaryTree
+
+isMirror
+public boolean isMirror(TreeNode root){
+	if(root == null){
+		return true;
+	}else{
+		return isMirror(root,root);
+	}
+}
+
+private boolean isMirror(TreeNode leftRoot,TreeNode rightRoot){
+	if(leftRoot==null&&rightRoot==null){
+		return true;
+	}
+	if(leftRoot.val!=rightRoot.val){
+		return false;
+	}else{
+		if(leftRoot!=null && rightRoot!=null&&leftRoot.val==rightRoot.val){
+			return isMirror(leftRoot.left,rightRoot.right)&&isMirror(leftRoot.right,rightRoot.left);
+		}
+		return false;
+	}
+}
+isBST --- using stack
+public boolean isBST(TreeNode root){
+	  if (root == null) return true;
+   Stack<TreeNode> stack = new Stack<>();
+   TreeNode pre = null;
+   while (root != null || !stack.isEmpty()) {
+      while (root != null) {
+         stack.push(root);
+         root = root.left;
+      }
+      root = stack.pop();
+      if(pre != null && root.val <= pre.val) return false;
+      pre = root;
+      root = root.right;
+   }
+   return true;
+    }
+}
+
+closetValue in BST
+public int closeValue(TreeNode root,int target){
+	if(root==null||null==target){
+		return 0;
+	}else{
+		int returnVal = root.val;
+		TreeNode temp = root;
+		while(temp!=null){
+			if(Math.abs(target-temp.val)<Math.abs(target-returnVal)){
+				returnVal = temp.val;
+			}
+			temp = target>temp.Val?temp.right:temp.left;
+		}
+		return returnVal;
+	}
+}
+
+Lowest Common Ancestor in BST and Binary Tree
+public TreeNode LCABST(TreeNode root,TreeNode p,TreeNode q){
+	if(root==null){
+		return root;
+	}else{
+		if(p.val>root.val&&q.val>root.val){
+			return LCABST(root.right);
+		}else if(p.val<root.val&&q.val<root.val){
+			return LCABST(root.left);
+		}else{
+			return root;
+		}
+	}
+}
+
+public TreeNode LCABT(TreeNode root,TreeNode p,TreeNode q){
+	if(root==null){
+		return root;
+	}else if(p==root||q==root){
+		return root;
+	}else{
+		TreeNode left = LCABT(root.left,p,q);
+		TreeNode right = LCABT(root.right,p,q);
+		
+		if(left!=null&&right!=null){
+			return root;
+		}
+		
+		return left!=null?left:right;
+	}
+}
+
+Binary Tree Maximum Path Sum
+Class BTUtility{
+	private int max = Integer.MIN_VALUE;
+	public int maxPathSum(TreeNode root){
+		if(root ==null){
+			return 0;
+		}else{
+			maxPath(root);
+			return max;
+		}
+	}
+	
+	public int maxPath(TreeNode root){
+		int left = Math.max(0,maxPath(root.left));
+		int right = Math.max(0,maxPath(root.right));
+		max = Math.max(max,left+right+root.val);
+		return Math.max(left,right)+root.val;
+	}
+}
+
+Minimum Difference Between BST Nodes
+
+Class BUtility{
+	private int min = Integer.MAX_VALUE;
+	private TreeNode prev=null;
+	public int minDiffInBST(TreeNode root){
+		if(root == null){
+			return -1;
+		}else{
+			inOrder(root);
+			return min;
+		}
+	}
+	private void inOrder(TreeNode root){
+		if(root.left!=null){
+			inOrder(root.left);
+		}
+		if(prev!=null){
+			min = Math.min(min,Math.abs(prev.data-root.data));
+		}
+		prev = root;
+		if(root.right!=null){
+			inOrder(root.right);
+		}
+	}
+}
+
+Implementing Stack and Queue using LInked List
+LRU 
+
 Implementing Stack and Queue using LInked List
 LRU 
 
