@@ -320,6 +320,27 @@ LRU
 
 Implementing Stack and Queue using LInked List
 LRU 
+Class LRUCache{
+	private int capacity;
+	private Map<Integer,Object> map;
+	public LRUCache(int cap){
+		this.capacity = cap;
+		map = new LinkedHashMap<>(cap,0.75f,true){
+			protected boolean removeOldestEntry(Map.Entry entry){
+				return size()>cap;
+			}
+		};
+	}
+	
+	public void put(Integer key,Object obj){
+		this.map.put(key,obj);
+	}
+	
+	public Object get(Integer key){
+		this.map.getoRDefault(key,-1);
+	}
+	
+}
 Linked List
 Middle Node
 Delete End Node
