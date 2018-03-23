@@ -14,6 +14,21 @@ Lowest Common Ancestor in BST and Binary Tree
 Binary Tree Maximum Path Sum
 Minimum Distance Between BST Nodes
 
+1)LRU Cache
+2)Longest Common Subsequence
+3)Longest Sub-Sequence without repeating characters
+4)Palindrome
+5)Longest Palindrome Sub-Sequence
+6)Permutations
+7)Minimum window sub-strings
+8)Palindrome Partioning
+9)Anagrams and Group Anagrams
+10)First Unique Character in String
+11)Contains-Duplicates
+12)Valid Palindrome
+13)Top K frequent Elements
+14)Longest Common Prefix
+
 Trees
 Traversal
 public void inOrder(TreeNode root){
