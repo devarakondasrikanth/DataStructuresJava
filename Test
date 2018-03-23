@@ -348,6 +348,45 @@ Reverse
 Check Reverse
 Longest Common Sub-Sequence
 
+
+public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        int a = countNodes(headA);
+        int b = countNodes(headB);
+        ListNode c = headA;
+        ListNode d = headB;
+        if(a>b){
+            int diff1 = a-b;
+            while(diff1>0){
+                c = c.next;
+                diff1--;
+            }
+        }else if(b>a){
+            int diff2 = b-a;
+            while(diff2>0){
+                d = d.next;
+                diff2--;
+            }
+        }
+        while(c!=null&&d!=null){
+            if(c==d){
+                return c;
+            }
+            c = c.next;
+            d = d.next;
+        }
+        return null;
+    }
+    
+    public int countNodes(ListNode head){
+        ListNode temp = head;
+        int count =0;
+        while(temp!=null){
+            count++;
+            temp = temp.next;
+        }
+        return count;
+    }
+    
 public int LongestCommonSubSequence(String s1,String s2){
 	if(s1==null||s2==null){
 		return 1;
