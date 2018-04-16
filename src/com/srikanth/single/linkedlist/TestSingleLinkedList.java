@@ -49,7 +49,7 @@ public class TestSingleLinkedList {
 		
 		SingleLinkedList.printNodes(head);
 		
-		head = SingleLinkedList.chunkRev(head, 3);
+		head = SingleLinkedList.chunkRev(head, 2);
 		
 		System.out.println("*****************************");
 		

@@ -6,11 +6,11 @@ import java.util.Set;
 
 public class StringPermutations {
 	public static void main(String args[]){
-		//permutation("SRIKANTH");
-		Set<String> lst = permutations("SRIKANTH");
-		for(String str:lst)
-			System.out.println(str);
-		System.out.println(lst.size());
+		permutation("SRIKANTH");
+//		Set<String> lst = permutations("SRIKANTH");
+//		for(String str:lst)
+//			System.out.println(str);
+//		System.out.println(lst.size());
 	}
 	public static void permutation(String str) { 
 	    permutation("", str); 

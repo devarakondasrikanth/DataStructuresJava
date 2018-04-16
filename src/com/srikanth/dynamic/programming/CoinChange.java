@@ -5,8 +5,8 @@ import java.util.Arrays;
 public class CoinChange {
 	
 	public static void main(String args[]){
-		int arr[] = {1, 2, 3};
-        for(int n=1;n<=10;n++){
+		int arr[] = {1,2,3};
+        for(int n=1;n<=8;n++){
         System.out.println(countWays(n,arr));        
         System.out.println(coinChnageWays(n,arr));
         }
@@ -35,9 +35,9 @@ public class CoinChange {
 				if(i>=coin){
 					combinations[i]+=combinations[i-coin];
 				}
-				System.out.print(combinations[i]+" ");
+				
 			}
-			System.out.println();
+		
 		}
 		
 		return combinations[amount];

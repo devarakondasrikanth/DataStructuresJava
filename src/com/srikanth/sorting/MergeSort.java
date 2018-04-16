@@ -135,7 +135,7 @@ public class MergeSort {
 	
 	public static void main(String args[]){
 		int[] a = {1,8,2,3,7,4,9,5,6};
-		a = insertionSort(a);
+		a = bubbleSort(a);
 		for (int i : a) {
 			System.out.println(i);
 		}

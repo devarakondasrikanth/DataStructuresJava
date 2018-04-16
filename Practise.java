@@ -5,7 +5,11 @@ import java.util.List;
 //Tree is symmentric
 public static boolean isSymentric(TreeNode root){isMirroed(root,root);}
 
-public static boolean isMirrored(TreeNode root1,TreeNode root2){if(root1==null&&root2==null)return true;else{if(root1!=null&&root2!=null&&root1.data==root2.data)return(isMirrored(root1.left,root2.right)&&isMirroed(root1.right,root2.left));}return false;}
+public static boolean isMirrored(TreeNode root1,TreeNode root2)
+{if(root1==null&&root2==null)return true;
+else{if(root1!=null&&root2!=null&&root1.data==root2.data)
+return(isMirrored(root1.left,root2.right)&&isMirroed(root1.right,root2.left));}
+return false;}
 
 //Tree Traversals
 //Inorder LEFT,ROOT,RIGHT
@@ -26,10 +30,7 @@ public void printSumAtEachLevel(TreeNode root){if(root==null)System.out.println(
 
 }System.out.println("Sum of all nodes on this level is "+sum);}}}
 
-public void printNodesInDFS(TreeNode root){
-	if(root==null){System.out.println("Tree is empty");}
-	else{Stack<TreeNode>stack=new Stack<>();stack.push(root);
-	while(!stack.isEmpty()){TreeNode temp=stack.pop();System.out.println(temp.data);if(temp.left!=null){stack.push(temp.left);}if(temp.right!=null){stack.push(temp.data);}}}}
+public void printNodesInDFS(TreeNode root){if(root==null){System.out.println("Tree is empty");}else{Stack<TreeNode>stack=new Stack<>();stack.push(root);while(!stack.isEmpty()){TreeNode temp=stack.pop();System.out.println(temp.data);if(temp.left!=null){stack.push(temp.left);}if(temp.right!=null){stack.push(temp.data);}}}}
 
 public static int fab(int n){if(n==0)return 0;else if(n==1)return 1;else return fab(n-1)+fab(n-2);}
 
@@ -330,208 +331,217 @@ class BSTUtility {
 
 }
 
-	public void printPermute(String str) {
-		if (str == null) {
-			System.out.println("Empty String");
-		} else {
-			Set<String> set = new HashSet<>();
-			permute(str, 0, str.length() - 1, set);
-			printset(set);
+public void printPermute(String str) {
+	if (str == null) {
+		System.out.println("Empty String");
+	} else {
+		Set<String> set = new HashSet<>();
+		permute(str, 0, str.length() - 1, set);
+		printset(set);
+	}
+}
+
+public void permute(String str, int l, int r, Set<String> set) {
+	if (l == r) {
+		set.add(str);
+	} else {
+		for (int i = 1; i < str.length(); i++) {
+			str = swap(str, l, i);
+			permute(str, l + 1, r, set);
+			str = swap(str, l, i);
 		}
 	}
+}
 
-	public void permute(String str, int l, int r, Set<String> set) {
-		if (l == r) {
-			set.add(str);
-		} else {
-			for (int i = 1; i < str.length(); i++) {
-				str = swap(str, l, i);
-				permute(str, l + 1, r, set);
-				str = swap(str, l, i);
+public String swap(String str, int i, int j) {
+	char[] tempChar = str.toCharArray();
+	char temp = tempChar[i];
+	tempChar[i] = tempChar[j];
+	tempChar[j] = temp;
+	return String.valueOf(tempChar);
+}
+
+public void printset(Set<String> set) {
+	for (String str : set) {
+		System.out.println(str);
+	}
+}
+
+public boolean isPalindrome(String str) {
+	int count=0;for(int i=0,j=str.length()-1,i<str.length()&&j>0;i++,j--){if(str.charAt(i)!=str.charAt(j)){count++;}}return count==1;
+}
+
+public boolean isAnagaram(String str1, String str2) {
+	char[] c1 = str1.toCharArray();
+	char[] c2 = str2.toCharArray();
+	Arrays.sort(c1);
+	Arrays.sort(c2);
+	return Arrays.equals(c2);
+}
+
+public String LCS(String s1, String s2) {
+	if(s1==null||s2=null){return null;}else{List<Character>list=new ArrayLst<>();lcs(s1,s2,s1.length()-1,s2.length()-1,lst);return lst.toString();}
+}
+
+public int lcs(String s1, String s2, int m, int n, List<Character> lst) {
+	if (s1.charAt(m) == s2.charAt(n)) {
+		lst.add(s1.charAt(m));
+		return 1 + lcs(s1, s2, m - 1, n - 1, lst);
+	} else {
+		return Math.max(lcs(s1, s2, m - 1, n, lst), lcs(s1, s2, m, n - 1, lst));
+	}
+}
+
+public int countWays(int[] coins, int amount) {
+	int cobminations = new int[amount + 1];
+	combinations[0] = 1;
+	for (int coin : coins) {
+		for (int i = 1; i < amount + 1; i++) {
+			if (i >= coin) {
+				combinations[i] += combinations[i - coin];
 			}
 		}
 	}
+	return combinations[amount];
+}
 
-	public String swap(String str, int i, int j) {
-		char[] tempChar = str.toCharArray();
-		char temp = tempChar[i];
-		tempChar[i] = tempChar[j];
-		tempChar[j] = temp;
-		return String.valueOf(tempChar);
-	}
-
-	public void printset(Set<String> set) {
-		for (String str : set) {
-			System.out.println(str);
+public int smallDiffArrays(int[] arr1, int[] arr2) {
+	Arrays.sort(arr1);
+	Arrays.sort(arr2);
+	int smallDiff = Integer.MAX_VALUE;
+	int i = 0;
+	int j = 0;
+	while (i < arr1.length && j < arr2.length) {
+		if (Math.abs(arr1[i] - arr2[j]) < smallDiff) {
+			smallDiff = Math.abs(arr1[i] - arr2[j]);
 		}
-	}
 
-	public boolean isPalindrome(String str) {
-		int count=0;for(int i=0,j=str.length()-1,i<str.length()&&j>0;i++,j--){if(str.charAt(i)!=str.charAt(j)){count++;}}return count==1;
-	}
-
-	public boolean isAnagaram(String str1, String str2) {
-		char[] c1 = str1.toCharArray();
-		char[] c2 = str2.toCharArray();
-		Arrays.sort(c1);
-		Arrays.sort(c2);
-		return Arrays.equals(c2);
-	}
-
-	public String LCS(String s1, String s2) {
-		if(s1==null||s2=null){return null;}else{List<Character>list=new ArrayLst<>();lcs(s1,s2,s1.length()-1,s2.length()-1,lst);return lst.toString();}
-	}
-
-	public int lcs(String s1, String s2, int m, int n, List<Character> lst) {
-		if (s1.charAt(m) == s2.charAt(n)) {
-			lst.add(s1.charAt(m));
-			return 1 + lcs(s1, s2, m - 1, n - 1, lst);
+		if (arr1[i] > arr2[j]) {
+			i++;
 		} else {
-			return Math.max(lcs(s1, s2, m - 1, n, lst), lcs(s1, s2, m, n - 1, lst));
+			j++;
 		}
 	}
+	return smallDiff;
+}
 
-	public int countWays(int[] coins, int amount) {
-		int cobminations=new int[amount+1];combinations[0]=1;for(int coin:coins){for(int i=1;i<amount+1;i++){if(i>=coin){combinations[i]+=combinations[i-coin];}}}return combinations[amount];
+public int max1(int[] arr) {
+	int max1 = Integer.MIN_VALUE;
+	for (int i : arr) {
+		if (i > max1)
+			;
+		max1 = i;
 	}
+	return max1;
+}
 
-	public int smallDiffArrays(int[] arr1, int[] arr2) {
-		Arrays.sort(arr1);
-		Arrays.sort(arr2);
-		int smallDiff = Integer.MAX_VALUE;
-		int i = 0;
-		int j = 0;
-		while (i < arr1.length && j < arr2.length) {
-			if (Math.abs(arr1[i] - arr2[j]) < smallDiff) {
-				smallDiff = Math.abs(arr1[i] - arr2[j]);
-			}
-
-			if (arr1[i] > arr2[j]) {
-				i++;
-			} else {
-				j++;
-			}
-		}
-		return smallDiff;
-	}
-
-	public int max1(int[] arr) {
-		int max1 = Integer.MIN_VALUE;
-		for (int i : arr) {
-			if (i > max1)
-				;
+public int max2(int[] arr) {
+	int max1 = Integer.MIN_VALUE;
+	int max2 = Integer.MIN_VALUE;
+	for (int i : arr) {
+		if (i > max1) {
+			max2 = max1;
 			max1 = i;
+		} else if (i < max1 && i > max2) {
+			max2 = i;
 		}
-		return max1;
 	}
+	return max2;
+}
 
-	public int max2(int[] arr) {
-		int max1 = Integer.MIN_VALUE;
-		int max2 = Integer.MIN_VALUE;
-		for (int i : arr) {
-			if (i > max1) {
-				max2 = max1;
-				max1 = i;
-			} else if (i < max1 && i > max2) {
-				max2 = i;
+public int Fab(int n) {
+	int[] temp = new int[n + 1];
+	temp[0] = 0;
+	temp[1] = 1;
+
+	for (int i = 2; i < temp.length; i++) {
+		temp[i] = temp[i - 1] + temp[i - 2];
+	}
+	return temp[n];
+}
+
+public int maxLengthSubString(String str) {
+	if (str == null) {
+		return 0;
+	} else {
+		Set<Character> set = new HashSet<>();
+		int i = 0, j = 0;
+		int max_length = Integer.MIN_VALUE;
+		while (i < str.length && j < str.length) {
+			if (!set.contains(str.charAt(j))) {
+				set.add(str.charAt(j++));
+				max = Math.max(max, j - i);
+			} else {
+				set.remove(str.charAt(i++));
 			}
 		}
-		return max2;
+		return max_length;
 	}
+}
 
-	public int Fab(int n) {
-		int[] temp = new int[n + 1];
-		temp[0] = 0;
-		temp[1] = 1;
-
-		for (int i = 2; i < temp.length; i++) {
-			temp[i] = temp[i - 1] + temp[i - 2];
+public int maxSumInArray(int[] arr) {
+	if (arr == null) {
+		return 0;
+	} else {
+		int max_sum = Intger.MIN_VALUE;
+		int curr_max = 0;
+		for (int i = 0; i < arr.length; i++) {
+			curr_max = Math.max(a[i], a[i] + curr_max);
+			max_sum = Math.max(max_sum, curr_max);
 		}
-		return temp[n];
+		return max_sum;
 	}
+}
 
-	public int maxLengthSubString(String str) {
-		if (str == null) {
-			return 0;
-		} else {
-			Set<Character> set = new HashSet<>();
-			int i = 0, j = 0;
-			int max_length = Integer.MIN_VALUE;
-			while (i < str.length && j < str.length) {
-				if (!set.contains(str.charAt(j))) {
-					set.add(str.charAt(j++));
-					max = Math.max(max, j - i);
-				} else {
-					set.remove(str.charAt(i++));
-				}
+public void printSumOfEachDepth(TreeNode root) {
+	if (root == null) {
+		sysout("tree is empty");
+	} else {
+		Stack<TreeNode> stack = new Stack();
+		stack.push(root);
+		while (!stack.isEmpty()) {
+			int size = stack.size();
+			int sum = 0;
+			while (size > 0) {
+				TreeNode temp = stack.pop();
+				sum += temp.data;
+				if (temp.left != null)
+					stack.push(temp.left);
+				if (temp.right != null)
+					stack.push(temp.right);
+				size--;
 			}
-			return max_length;
-		}
-	}
-
-	public int maxSumInArray(int[] arr) {
-		if (arr == null) {
-			return 0;
-		} else {
-			int max_sum = Intger.MIN_VALUE;
-			int curr_max = 0;
-			for (int i = 0; i < arr.length; i++) {
-				curr_max = Math.max(a[i], a[i] + curr_max);
-				max_sum = Math.max(max_sum, curr_max);
-			}
-			return max_sum;
+			System.out.println("Sum of nodes of this depth is " + sum);
 		}
 	}
+}
 
-	public void printSumOfEachDepth(TreeNode root) {
-		if (root == null) {
-			sysout("tree is empty");
-		} else {
-			Stack<TreeNode> stack = new Stack();
-			stack.push(root);
-			while (!stack.isEmpty()) {
-				int size = stack.size();
-				int sum = 0;
-				while (size > 0) {
-					TreeNode temp = stack.pop();
-					sum += temp.data;
-					if (temp.left != null)
-						stack.push(temp.left);
-					if (temp.right != null)
-						stack.push(temp.right);
-					size--;
-				}
-				System.out.println("Sum of nodes of this depth is " + sum);
-			}
+public Node chunkReverse(Node head, int n) {
+	if (head == null) {
+		return head;
+	} else if (head.next == null) {
+		return null;
+	} else {
+		Node prev = null;
+		Node next = null;
+		Node current = head;
+		int count = n;
+		while (count > 0 && current != null) {
+			next = current.next;
+			current.next = previous;
+			previous = current;
+			current = next;
+			count--;
 		}
-	}
-
-	public Node chunkReverse(Node head, int n) {
-		if (head == null) {
-			return head;
-		} else if (head.next == null) {
-			return null;
-		} else {
-			Node prev = null;
-			Node next = null;
-			Node current = head;
-			int count = n;
-			while (count > 0 && current != null) {
-				next = current.next;
-				current.next = previous;
-				previous = current;
-				current = next;
-				count--;
-			}
-			if (next != null) {
-				head.next = chunkReverse(next, k);
-			}
-			return previous;
+		if (next != null) {
+			head.next = chunkReverse(next, k);
 		}
+		return previous;
 	}
+}
 
-	public int countWays(int[] arr, int sum) {
-		int[]result=new int[sum+1];for(int i:arr){for(int j=0;j<sum+1;j++){if(j>=i)result[j]+=result[j-i];}return arr[sum];
+public int countWays(int[] arr, int sum) {
+	int[]result=new int[sum+1];for(int i:arr){for(int j=0;j<sum+1;j++){if(j>=i)result[j]+=result[j-i];}return arr[sum];
 	}
 
 	public static boolean istPalindrom(char[] word) {
@@ -669,7 +679,16 @@ class BSTUtility {
 	}
 
 	public int countWays(int[] coint, int amount) {
-		int[]ways=new int[amount+1];ways[0]=1;for(int coin:coins){for(int i=1;i<amount;i++){if(i>=coin){ways[i]+=ways[i-coins];}}}return ways[amount];
+		int[] ways = new int[amount + 1];
+		ways[0] = 1;
+		for (int coin : coins) {
+			for (int i = 1; i < amount; i++) {
+				if (i >= coin) {
+					ways[i] += ways[i - coins];
+				}
+			}
+		}
+		return ways[amount];
 	}
 
 	public int[] swapTwoNumbers(int[] arr1, int[] arr2) {
@@ -824,12 +843,12 @@ class BSTUtility {
 		return temp;
 	}
 
-public int LCS(String str1,String str2){
+	public int LCS(String str1,String str2){
 
-	retrun lcs(str1,str2,str1.length(),str2.length());
-}
+		retrun lcs(str1,str2,str1.length(),str2.length());
+	}
 
-public int lcs(String s1, String s2, int m, int n) {
+	public int lcs(String s1, String s2, int m, int n) {
 		if (s1.charAt(m - 1) == s2.charAt(n - 1))
 			return 1 + lcs(s1, s2, m - 1, n - 1);
 		else
@@ -858,7 +877,7 @@ public int lcs(String s1, String s2, int m, int n) {
 	}
 
 	public boolean isMirroed(TreeNode rootLeft, TreeNode rootRight) {
-		if (root == null) {
+		if (rootLeft == null && rootRight==null) {
 			return true;
 		} else {
 			if (rootLeft != null && rootRight != null && rootLeft.data == rootRight.data) {
@@ -910,166 +929,279 @@ public int lcs(String s1, String s2, int m, int n) {
 			combinations = extraColumnCombinations;
 		}
 		return combinations;
-}
+	}
 
-public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        int lIndex = 0;
-        int rIndex = 0;
-        int[] result = new int[nums1.length+nums2.length];
-        int i=0;
-        while(lIndex<nums1.length&&rIndex<nums2.length){
-            if(nums1[lIndex]<nums2[rIndex]){
-                result[i++] = nums1[lIndex++];
-            }else{
-                result[i++] = nums2[rIndex++];
-            }
-        }
-        
-        while(lIndex<nums1.length){
-            result[i++] = nums1[lIndex++];
-        }
-        
-        while(rIndex<nums2.length){
-            result[i++] = nums2[rIndex++];
-        }
-        
-        if(result.length%2!=0){
-            return new Double(result[result.length/2]);
-        }
-        else{
-            int a = result[result.length/2];
-            int b = result[(result.length/2)-1];
-            return (a+b)/2;
-        }
-    }
+	public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+		int lIndex = 0;
+		int rIndex = 0;
+		int[] result = new int[nums1.length + nums2.length];
+		int i = 0;
+		while (lIndex < nums1.length && rIndex < nums2.length) {
+			if (nums1[lIndex] < nums2[rIndex]) {
+				result[i++] = nums1[lIndex++];
+			} else {
+				result[i++] = nums2[rIndex++];
+			}
+		}
+
+		while (lIndex < nums1.length) {
+			result[i++] = nums1[lIndex++];
+		}
+
+		while (rIndex < nums2.length) {
+			result[i++] = nums2[rIndex++];
+		}
+
+		if (result.length % 2 != 0) {
+			return new Double(result[result.length / 2]);
+		} else {
+			int a = result[result.length / 2];
+			int b = result[(result.length / 2) - 1];
+			return (a + b) / 2;
+		}
+	}
 
 	class Solution {
-    public int longestConsecutive(int[] nums) {
-        Set<Integer> num_set = new HashSet<Integer>();
-        for (int num : nums) {
-            num_set.add(num);
-        }
+		public int longestConsecutive(int[] nums) {
+			Set<Integer> num_set = new HashSet<Integer>();
+			for (int num : nums) {
+				num_set.add(num);
+			}
 
-        int longestStreak = 0;
+			int longestStreak = 0;
 
-        for (int num : num_set) {
-            if (!num_set.contains(num-1)) {
-                int currentNum = num;
-                int currentStreak = 1;
+			for (int num : num_set) {
+				if (!num_set.contains(num - 1)) {
+					int currentNum = num;
+					int currentStreak = 1;
 
-                while (num_set.contains(currentNum+1)) {
-                    currentNum += 1;
-                    currentStreak += 1;
-                }
+					while (num_set.contains(currentNum + 1)) {
+						currentNum += 1;
+						currentStreak += 1;
+					}
 
-                longestStreak = Math.max(longestStreak, currentStreak);
-            }
-        }
+					longestStreak = Math.max(longestStreak, currentStreak);
+				}
+			}
 
-        return longestStreak;
-    }
+			return longestStreak;
+		}
+	}
+
+	public class Solution {
+
+		public int longestIncreasingPath(int[][] matrix) {
+
+			if (matrix == null || matrix.length < 1 || matrix[0].length < 1)
+				return 0;
+
+			int max = 0, n = matrix.length, m = matrix[0].length;
+
+			// create a cache matrix
+			int[][] cache = new int[n][m];
+
+			// dfs search on every element in matrix
+			for (int i = 0; i < n; i++) {
+				for (int j = 0; j < m; j++) {
+					max = Math.max(dfs(matrix, Integer.MIN_VALUE, i, j, n, m, cache), max);
+				}
+			}
+			return max;
+		}
+
+		int dfs(int[][] matrix, int min, int i, int j, int n, int m, int[][] cache) {
+
+			// check boundary limits
+			if (i < 0 || j < 0 || i >= n || j >= m)
+				return 0;
+
+			// check min condition
+			if (matrix[i][j] <= min)
+				return 0;
+
+			// check into cache
+			if (cache[i][j] != 0)
+				return cache[i][j];
+
+			// update min
+			min = matrix[i][j];
+
+			// run dfs in all four directions
+			int a = dfs(matrix, min, i - 1, j, n, m, cache) + 1;
+			int b = dfs(matrix, min, i + 1, j, n, m, cache) + 1;
+			int c = dfs(matrix, min, i, j - 1, n, m, cache) + 1;
+			int d = dfs(matrix, min, i, j + 1, n, m, cache) + 1;
+
+			// find max and update cache
+			int max = Math.max(a, Math.max(b, Math.max(c, d)));
+			cache[i][j] = max;
+
+			return max;
+		}
+	}
+
+	class Solution {
+		public int maxProduct(int[] nums) {
+			int max = Integer.MIN_VALUE, imax = 1, imin = 1;
+			for (int i = 0; i < nums.length; i++) {
+				if (nums[i] < 0) {
+					int tmp = imax;
+					imax = imin;
+					imin = tmp;
+				}
+				imax = Math.max(imax * nums[i], nums[i]);
+				imin = Math.min(imin * nums[i], nums[i]);
+
+				max = Math.max(max, imax);
+			}
+			return max;
+		}
+	}
+
+	public int maxProduct(int[] arr) {
+		int max_value = Integer.MIN_VALUE;
+		int min = arr[0];
+		int max = arr[0];
+		for (int i = 1; i < arr.length; i++) {
+			if (arr[i] > 0) {
+				min = Math.min(arr[i] * min, arr[i]);
+				max = Math.max(arr[i] * max, arr[i]);
+			} else {
+				int lastMax = max;
+				max = Math.max(min * arr[i], arr[i]);
+				min = Math.min(lastMax * arr[i], arr[i]);
+			}
+			max_value = Math.max(maxValue, max);
+		}
+		return max_value;
+	}
+
+	public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+		if (root == null) {
+			return null;
+		}
+
+		if (root == p || root == q) {
+			return root;
+		}
+
+		TreeNode l = lowestCommonAncestor(root.left, p, q);
+		TreeNode r = lowestCommonAncestor(root.right, p, q);
+
+		if (l != null && r != null)
+			return root;
+
+		return l != null ? l : r;
+	}
+	
+	public Node reverseLinkedList(Node head){
+		if(head ==null){
+			return head;
+		}else{
+			Node current = head;
+			Node next = null;
+			Node prev = null;
+			while(current !=null){
+				next = current.next;
+				current.next = prev;
+				prev = current;
+				current = next;
+			}
+			return prev;
+		}
+	}
+	
+	public Node reverseChunckList(Node head,int k){
+		if(head == null || k==0){
+			return head;
+		}else{
+			int i = k;
+			Node prev = null;
+			Node next = null;
+			Node current = head;
+			while(i>0&&current!=null){
+				next = current.next;
+				current.next = prev;
+				prev = current;
+				current = next;
+				i--;
+			}
+			
+			if(next!=null){
+				head.next = reverseChunckList(next,k);
+			}
+			return prev;
+		}
+	}
+	
+	
+Class LRUCache{
+	private int capacity;
+	private Map<Integer,Object> map;
+	public LRUCache(int cap){
+		this.capacity = cap;
+		map = new LinkedHashMap<>(cap,0.75f,true){
+			protected boolean removeOldestEntry(Map.Entry entry){
+				return size()>cap;
+			}
+		};
+	}
+	
+	public void put(Integer key,Object obj){
+		this.map.put(key,obj);
+	}
+	
+	public Object get(Integer key){
+		this.map.getoRDefault(key,-1);
+	}
+	
 }
 
-public class Solution {
+public int LongestCommonSubSequence(String s1,String s2){
+	if(s1==null||s2==null){
+		return 1;
+	}else{
+		return lcs(s1,s2,s1.length()-1,s2.length()-1);
+	}
+}
 
-	public int longestIncreasingPath(int[][] matrix) {
+public int lcs(String s1,String s2,int m,int n){
+	if(s1.charAt(m)==s2.CharAt(n)){
+		return 1+lcs(s1,s2,m-1,n-1);
+	}else{
+		return Math.max(lcs(s1,s2,m,n-1),lcs(s1,s2,m-1,n));
+}
 
-		if (matrix == null || matrix.length < 1 || matrix[0].length < 1)
-			return 0;
 
-		int max = 0, n = matrix.length, m = matrix[0].length;
-
-		// create a cache matrix
-		int[][] cache = new int[n][m];
-
-		// dfs search on every element in matrix
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < m; j++) {
-				max = Math.max(dfs(matrix, Integer.MIN_VALUE, i, j, n, m, cache), max);
+public int longestSubSequence(String s){
+	if(s==null){
+		return -1;
+	}else{
+		Set<Character> set = new HashSet<>();
+		int i=0j=0;
+		int max = Integer.MIN_VALUE;
+		while(j<s.length()){
+			if(!set.contains(s.charAt(j))){
+				set.add(s.charAt(j++));
+				max = Math.max(max,j-i);
+			}else{
+				set.remove(s.charAt(i++));
 			}
 		}
 		return max;
 	}
-
-	int dfs(int[][] matrix, int min, int i, int j, int n, int m, int[][] cache) {
-
-		// check boundary limits
-		if (i < 0 || j < 0 || i >= n || j >= m)
-			return 0;
-
-		// check min condition
-		if (matrix[i][j] <= min)
-			return 0;
-
-		// check into cache
-		if (cache[i][j] != 0)
-			return cache[i][j];
-
-		// update min
-		min = matrix[i][j];
-
-		// run dfs in all four directions
-		int a = dfs(matrix, min, i - 1, j, n, m, cache) + 1;
-		int b = dfs(matrix, min, i + 1, j, n, m, cache) + 1;
-		int c = dfs(matrix, min, i, j - 1, n, m, cache) + 1;
-		int d = dfs(matrix, min, i, j + 1, n, m, cache) + 1;
-
-		// find max and update cache
-		int max = Math.max(a, Math.max(b, Math.max(c, d)));
-		cache[i][j] = max;
-
-		return max;
-	}
 }
 
-class Solution {
-    public int maxProduct(int[] nums) {
-        int max = Integer.MIN_VALUE, imax = 1, imin = 1;
-        for(int i=0; i<nums.length; i++){
-            if(nums[i] < 0){ int tmp = imax; imax = imin; imin = tmp;}
-            imax = Math.max(imax*nums[i], nums[i]);
-            imin = Math.min(imin*nums[i], nums[i]);
-            
-            max = Math.max(max, imax);
-        }
-        return max;
-    }
-}
-
-
-
-public int maxProduct(int[] arr){
-	int max_value= Integer.MIN_VALUE;
-	int min= arr[0];
-	int max = arr[0];
-	for(int i=1;i<arr.length;i++){
-		if(arr[i]>0){
-			min = Math.min(arr[i]*min,arr[i]);
-			max = Math.max(arr[i]*max,arr[i]);
-		}else{
-			int lastMax = max;
-			max = Math.max(min*arr[i],arr[i]);
-			min = Math.min(lastMax*arr[i],arr[i]);
-		}
-		max_value = Math.max(maxValue,max);
+public boolean Anagrams(String s1,String s2){
+	if(s1==null||s2==null){
+		return fasle;
 	}
-	return max_value;
-}
-
-public TreeNode lowestCommonAncestor(TreeNode root,TreeNode p,TreeNode q){
-	if(root==null){
-		return null;
+	if(s1.length()!=s2.length()){
+		return false;
 	}
-	
-	if(root == p||root==q){
-		return root;
-	}
-	
-	TreeNode l = lowestCommonAncestor(root.left,p,q);
-	TreeNode r = lowestCommonAncestor(root.right,p,q);
-	
-	if(l!=null&&r!=null)
-		return root;
-	
-	return l!=null?l:r;
+	char[] c1 = s1.toCharArray();
+	char[] c2 = s2.toCharArray();
+	Arrays.sort(c1);
+	Arrays.sort(c2);
+	return Arrays.equals(c1,c2);
 }
